@@ -29,9 +29,10 @@ const getAll = async (req: Request, res: Response) => {
           include: [
             { model: City, as: 'city' },
             { model: Region, as: 'region' },
-            {model: CalculatedScore, as: 'CalculatedScore'}
+            { model: CalculatedScore, as: 'CalculatedScore', required: true},
           ],
-          limit: 100
+          order: [[{ model: CalculatedScore, as: 'CalculatedScore' }, 'score', 'DESC']],
+          limit: 50
         });
         
         res.json(hotels);
