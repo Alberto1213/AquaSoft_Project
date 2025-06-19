@@ -1,0 +1,149 @@
+.hotels-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.hotels-title {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.hotels-error {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hotels-table-wrapper {
+  overflow-x: auto;
+}
+
+.hotels-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* FIXEAZĂ LĂȚIMILE */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* Definim lățimea coloanelor */
+.hotels-table th,
+.hotels-table td {
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap; /* text pe o singură linie */
+  overflow: hidden; /* ascunde overflow */
+  text-overflow: ellipsis; /* ... dacă textul e prea lung */
+}
+
+.hotels-table thead {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+}
+
+.hotels-table tbody tr:hover {
+  background-color: #e6f0ff;
+  cursor: pointer;
+}
+
+/* Fixăm lățimea coloanelor după importanță */
+.hotels-table th:nth-child(1),
+.hotels-table td:nth-child(1) {
+  width: 22%; /* Nume Hotel */
+  text-align: left;
+  padding-left: 20px;
+}
+
+.hotels-table th:nth-child(2),
+.hotels-table td:nth-child(2) {
+  width: 25%; /* Adresă */
+  text-align: left;
+  padding-left: 20px;
+}
+
+.hotels-table th:nth-child(3),
+.hotels-table td:nth-child(3),
+.hotels-table th:nth-child(4),
+.hotels-table td:nth-child(4),
+.hotels-table th:nth-child(5),
+.hotels-table td:nth-child(5) {
+  width: 12%; /* Oraș, Țară, Scor */
+}
+
+.hotels-table th:nth-child(6),
+.hotels-table td:nth-child(6) {
+  width: 17%; /* Acțiuni */
+}
+
+/* Link stilizat */
+.hotels-link {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hotels-link:hover {
+  text-decoration: underline;
+}
+
+/* Buton detalii */
+.hotels-btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.hotels-btn:hover {
+  background-color: #0056b3;
+}
+
+/* PAGINARE */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 6px;
+  padding: 8px 14px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+  cursor: default;
+}

@@ -4,6 +4,10 @@ import { Region } from '../models/Region';
 import { Request, Response } from 'express';
 import { CalculatedScore } from '../models/CalculatedScore';
 import { Model } from 'sequelize/types/model';
+import { Review } from '../models/Review';
+import { Manager } from '../models/Manager';
+
+import jwt from 'jsonwebtoken';
 
 interface IHotel {
   GlobalPropertyID: number;
@@ -72,24 +76,48 @@ const getById = async(req: Request, res: Response) =>{
     try{
     const id = req.params.id;
     const hotel = await Hotel.findByPk(id);
-
+ 
     const calculatedScore = await CalculatedScore.findOne({
       where: {GlobalPropertyID: id}
     })
-    
+ 
+    const reviews = await Review.findAll({
+      where: {GlobalPropertyID: id}
+    })
+   
     if (!hotel) {
       return res.status(404).json({ message: 'Hotel not found' });
     }else{
-      res.status(200).json({ message: 'Hotel found', hotel, calculatedScore: calculatedScore});
+      res.status(200).json({ message: 'Hotel found', hotel, calculatedScore: calculatedScore, reviews: reviews});
     }
   }catch(error: any){
     res.status(500).json({ error: error.message });
   }
 }
+ 
 
 const updateHotel = async(req: Request , res: Response) => {
     try{
+
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
+    const decodedToken = jwt.verify(token, 'supersecret') as { id: string, role: number };
+    if (decodedToken.role !== 1) {
+      return res.status(403).json({ message: 'You do not have permission to perform this action.' });
+    }
+
     const id = req.params.id;
+
+    const manager = await Manager.findOne({
+      where: { idhotel: id, iduser: decodedToken.id }
+    });
+
+    if (!manager) {
+      return res.status(403).json({ message: 'You do not have permission to update this hotel.' });
+    }
+
     const data = req.body;
     const hotel = await Hotel.findByPk(id);
     
@@ -106,7 +134,27 @@ const updateHotel = async(req: Request , res: Response) => {
 
 const deleteHotel = async(req: Request, res: Response)=>{
     try{
+
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'Access denied. No token provided.'
+      });
+    }
+    const decodedToken = jwt.verify(token, 'supersecret') as { id: string, role: number };
+    if (decodedToken.role !== 1) {
+      return res.status(403).json({ message: 'You do not have permission to perform this action.' });
+    } 
+
     const id = req.params.id;
+
+    const manager = await Manager.findOne({
+      where: { iduser: decodedToken.id , idhotel: id }
+    });
+
+    if (!manager) {
+      return res.status(403).json({ message: 'You do not have permission to delete this hotel.' });
+    }
+
     const hotel = await Hotel.findByPk(id);
 
     if(!hotel){

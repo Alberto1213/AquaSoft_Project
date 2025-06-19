@@ -2,7 +2,7 @@ import initializeDatabase from './DBconnections'
 import app from './routes';
 import cors from 'cors';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Funcția principală pentru pornirea aplicației
 const startServer = async () => {

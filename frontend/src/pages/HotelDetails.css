@@ -1,0 +1,118 @@
+.container {
+  width: 900px; /* lățime fixă */
+  margin: 40px auto; /* centru pe orizontală și margine sus/jos */
+  padding: 20px 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  color: #333;
+  box-sizing: border-box; /* să includă padding-ul în lățime */
+  overflow-wrap: break-word; /* să nu depășească containerul textul */
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+h3 {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  color: #34495e;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 6px 0;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+.reviewList {
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 300px; 
+  overflow-y: auto;  
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  margin-top: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.reviewItem {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.reviewItem:last-child {
+  border-bottom: none;
+}
+
+.reviewItem h4 {
+  margin-bottom: 8px;
+  color: #2980b9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 15px;
+  font-weight: 600;
+  color: #555;
+}
+
+.btnPage {
+  background-color: #3498db;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.btnPage:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.btnPage:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.btnBack {
+  margin-top: 30px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin-left: auto;
+}
+
+.btnBack:hover {
+  background-color: #5a6268;
+}
